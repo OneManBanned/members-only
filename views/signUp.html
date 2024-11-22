@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>Hello from EJS</h1>
+    <form action="/signUp" method="POST" novalidate>
+      <ul>
+        <div>
+          <label for="firstname">
+          <span>firstname: <span>
+          <input
+            type="text"
+            name="firstname"
+            id="firstname"
+            required
+            value="<% if (values.firstname) { %><%= values.firstname %><% } %>"
+            maxlength="255"
+          />
+          <span class="error" aria-live="polite" ><% if (errors.firstname) {%><%= errors.firstname %><% } %><span>
+          </label>
+        </div>
+        <div>
+          <label for="lastname">
+          <span>lastname: <span>
+          <input
+            type="text"
+            name="lastname"
+            id="lastname"
+            required
+            value="<% if (values.lastname) { %><%= values.lastname %><% } %>"
+            maxlength="255"
+          />
+          <span class="error" aria-live="polite" ><% if (errors.lastname) {%><%= errors.lastname %><% } %><span>
+          </label>
+        </div>
+        <div>
+          <label for="email">
+          <span>email: <span>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            value="<% if (values.email) { %><%= values.email %><% } %>"
+            maxlength="255"
+          />
+          <span class="error" aria-live="polite" ><% if (errors.email) {%><%= errors.email %><% } %><span>
+          </label>
+        </div>
+        <div>
+          <label for="password">
+          <span>password: <span>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            required
+            value="<% if (values.password) { %><%= values.password %><% } %>"
+            maxlength="255"
+            minlength="8"
+          />
+          <span class="error" aria-live="polite" ><% if (errors.password) {%><%= errors.password %><% } %><span>
+          </label>
+        </div>
+        <div>
+          <label for="confirmPassword">
+          <span>password: <span>
+          <input type="password" name="confirmPassword" id="confirmPassword" /
+            required
+            value="<% if (values.confirmPassword) { %><%= values.confirmPassword %><% } %>"
+            maxlength="255"
+            minlength="8"
+          >
+          <span class="error" aria-live="polite" ><% if (errors.confirmPassword) {%><%= errors.confirmPassword %><% } %><span>
+          </label>
+        </div>
+      </ul>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+  <%- include('clientValidation.html') %> 
+</html>
