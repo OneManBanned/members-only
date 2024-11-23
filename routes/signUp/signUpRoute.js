@@ -1,9 +1,9 @@
 import { Router } from "express";
-import controller from "../../controllers/signUpController.js";
+import signUpController from "../../controllers/signUpController.js";
 
 const signUpRoute = Router();
 
-signUpRoute.get("/", controller.getSignUp);
-signUpRoute.post("/", controller.postSignUp);
+signUpRoute.get("/", signUpController.get);
+signUpRoute.post("/", signUpController.post);
 
 export default signUpRoute;

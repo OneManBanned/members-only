@@ -10,13 +10,15 @@ const customFields = {
 
 const verifyCallback = async (username, password, done) => {
   try {
-    const { rows } = await db.findUserByName(username);
+    const { rows } = await db.findUserByEmail(username);
 
-    const user = rows[0];
+      const user = rows[0]
 
     if (!user) return done((null, false));
 
-    const isValid = ValidatePassword(password, user.hash, user.salt);
+    
+
+    const isValid = validatePassword(password, user.hash, user.salt);
 
     if (isValid) {
       return done(null, user);

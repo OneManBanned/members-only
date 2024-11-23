@@ -18,15 +18,16 @@ app.engine("html", ejs.renderFile)
 
 app.use(express.urlencoded({ extended: true }));
 
-import "./config/passport/passport.js"
 app.use(session)
+import "./config/passport/passport.js"
 
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.get("/login-failure", (req, res) => res.send("login failed") )
+app.get("/login-success", (req, res) => res.send("login succeded") )
 app.use("/signUp", signUpRoute)
 app.use("/login", loginRoute)
-
 app.get("/", (req, res) =>
   res.send('<h1>Hello World!</h1><br><a href="/signUp" >Sign Up</a>'),
 );

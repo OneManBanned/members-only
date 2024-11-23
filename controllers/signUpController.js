@@ -4,12 +4,12 @@ import { genPassword } from "../libs/passportUtils.js";
 import asyncHandler from "express-async-handler";
 import db from "../config/db/queries.js";
 
-const controller = {
-    getSignUp: (req, res) => {
+const signUpController = {
+    get: (req, res) => {
         res.render("signUp.html", { errors: {}, values: {} });
     },
 
-    postSignUp: [
+    post: [
         signUpValidation,
         asyncHandler(async (req, res) => {
 
@@ -42,4 +42,4 @@ function createErrorsMap(errors) {
     return errorsObj;
 }
 
-export default controller;
+export default signUpController;

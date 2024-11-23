@@ -1,12 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title></title>
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <h1>login page</h1> 
-    </body>
-</html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Members Club</title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>Login</h1>
+    <form action="/login" method="POST" novalidate>
+      <ul>
+        <div>
+          <label for="email">
+          <span>email: <span>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            value="<% if (values.email) { %><%= values.email %><% } %>"
+            maxlength="255"
+          />
+          <span class="error" aria-live="polite" ><% if (errors.email) {%><%= errors.email %><% } %><span>
+          </label>
+        </div>
+        <div>
+          <label for="password">
+          <span>password: <span>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            required
+            value="<% if (values.password) { %><%= values.password %><% } %>"
+            maxlength="255"
+            minlength="8"
+          />
+          <span class="error" aria-live="polite" ><% if (errors.password) {%><%= errors.password %><% } %><span>
+          </label>
+        </div>
+      </ul>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+  <!--- <%- include('clientValidation.html') %> 
