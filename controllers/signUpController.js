@@ -1,45 +1,45 @@
 import { validationResult } from "express-validator";
 import { signUpValidation } from "../libs/serverValidation.js";
-
+import { genPassword } from "../libs/passportUtils.js";
+import asyncHandler from "express-async-handler";
+import db from "../config/db/queries.js";
 
 const controller = {
-  getSignUp: (req, res) => {
-    res.render("signUp.html", { errors: {}, values: {} });
-  },
-
-  postSignUp: [
-    signUpValidation,
-    (req, res) => {
-      const { firstname, lastname, email, password, confirmPassword } = req.body;
-
-      const valid = validationResult(req);
-
-      if (!valid.isEmpty()) {
-
-        const errorsMap = createErrorsMap(valid.errors);
-        res.render("signUp.html", { errors: errorsMap, values: req.body});
-
-      } else {
-        console.log(valid.errors);
-        try {
-          // put user into database
-        } catch (err) {
-          // show error page
-        }
-
-        res.redirect("/login");
-      }
+    getSignUp: (req, res) => {
+        res.render("signUp.html", { errors: {}, values: {} });
     },
-  ],
+
+    postSignUp: [
+        signUpValidation,
+        asyncHandler(async (req, res) => {
+
+            const valid = validationResult(req);
+
+            if (!valid.isEmpty()) {
+                const errorsMap = createErrorsMap(valid.errors);
+                res.render("signUp.html", { errors: errorsMap, values: req.body });
+            }
+
+            const { firstname, lastname, email, password } = req.body;
+
+            const saltHash = genPassword(password)
+
+            const salt = saltHash.salt;
+            const hash = saltHash.hash;
+
+            await db.insertUser(firstname, lastname, email, hash, salt)
+
+            res.redirect("/login");
+        }),
+    ],
 };
 
-
 function createErrorsMap(errors) {
-  const errorsObj = {};
-  for (let error of errors) {
-    errorsObj[error.path] = error.msg;
-  }
-  return errorsObj;
+    const errorsObj = {};
+    for (let error of errors) {
+        errorsObj[error.path] = error.msg;
+    }
+    return errorsObj;
 }
 
 export default controller;
