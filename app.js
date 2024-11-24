@@ -5,6 +5,7 @@ import { dirname } from "path";
 import { session } from "./config/session/session.js";
 import signUpRoute from "./routes/signUp/signUpRoute.js";
 import loginRoute from "./routes/login/loginRoute.js";
+import joinRoute from "./routes/join/joinRoute.js";
 import passport from "passport";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -24,13 +25,13 @@ import "./config/passport/passport.js"
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.get("/login-failure", (req, res) => res.send("login failed") )
-app.get("/login-success", (req, res) => res.send("login succeded") )
+app.get("/logout", (req, res, next) => { req.logout(function(err) { if (err) { next(err) } }); res.redirect("/login") })
+
 app.use("/signUp", signUpRoute)
 app.use("/login", loginRoute)
-app.get("/", (req, res) =>
-  res.send('<h1>Hello World!</h1><br><a href="/signUp" >Sign Up</a>'),
-);
+app.use("/join", joinRoute)
+app.get("/", (req, res) => res.render("index.html"));
+
 app.use((req, res) => res.send("404 not found"))
 app.use((err, req, res, next) => {
     console.error(err)
