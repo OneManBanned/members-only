@@ -10,7 +10,7 @@
     <h1>Hello from EJS</h1>
     <form action="/signUp" method="POST" novalidate>
       <ul>
-        <div>
+        <li>
           <label for="firstname">
           <span>firstname: <span>
           <input
@@ -23,8 +23,8 @@
           />
           <span class="error" aria-live="polite" ><% if (errors.firstname) {%><%= errors.firstname %><% } %><span>
           </label>
-        </div>
-        <div>
+        </li>
+        <li>
           <label for="lastname">
           <span>lastname: <span>
           <input
@@ -37,8 +37,8 @@
           />
           <span class="error" aria-live="polite" ><% if (errors.lastname) {%><%= errors.lastname %><% } %><span>
           </label>
-        </div>
-        <div>
+        </li>
+        <li>
           <label for="email">
           <span>email: <span>
           <input
@@ -51,8 +51,8 @@
           />
           <span class="error" aria-live="polite" ><% if (errors.email) {%><%= errors.email %><% } %><span>
           </label>
-        </div>
-        <div>
+        </li>
+        <li>
           <label for="password">
           <span>password: <span>
           <input
@@ -66,8 +66,8 @@
           />
           <span class="error" aria-live="polite" ><% if (errors.password) {%><%= errors.password %><% } %><span>
           </label>
-        </div>
-        <div>
+        </li>
+        <li>
           <label for="confirmPassword">
           <span>password: <span>
           <input type="password" name="confirmPassword" id="confirmPassword" /
@@ -78,7 +78,7 @@
           >
           <span class="error" aria-live="polite" ><% if (errors.confirmPassword) {%><%= errors.confirmPassword %><% } %><span>
           </label>
-        </div>
+        </li>
       </ul>
       <button type="submit">Submit</button>
     </form>
