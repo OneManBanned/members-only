@@ -6,7 +6,8 @@ import { session } from "./config/session/session.js";
 import signUpRoute from "./routes/signUp/signUpRoute.js";
 import loginRoute from "./routes/login/loginRoute.js";
 import manageMemberRoute from "./routes/manageMember/manageMemberRoute.js";
-import commentRoute from "./routes/comment/commentRoute.js";
+import messageRoute from "./routes/message/messageRoute.js";
+import indexRoute from "./routes/indexRoute.js";
 import passport from "passport";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -37,16 +38,11 @@ app.get("/logout", (req, res, next) => {
   res.render("index.html", { signedIn: signedIn, memberStatus: memberStatus });
 });
 
-app.use("/comment", commentRoute);
+app.use("/message", messageRoute);
 app.use("/signUp", signUpRoute);
 app.use("/login", loginRoute);
 app.use("/manageMember", manageMemberRoute);
-
-app.get("/", (req, res) => {
-  const signedIn = req.isAuthenticated();
-  const memberStatus = signedIn ? req.user.membership_status : false;
-  res.render("index.html", { signedIn: signedIn, memberStatus: memberStatus });
-});
+app.use("/", indexRoute);
 
 app.use((req, res) => res.send("404 not found"));
 app.use((err, req, res, next) => {

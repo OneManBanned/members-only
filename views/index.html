@@ -1,15 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title></title>
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <%- include("header.html") %>
-        <main>
-          <h1>message board</h1>  
-        </main>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <%- include("header.html") %>
+    <main>
+      <h1>message board</h1>
+      <div>
+        <ul>
+          <% if (messages) { %> <% console.log(messages) %> <%
+          messages.forEach(function (message) { %>
+          <li><h2><%= message.title %></h2><p><%= message.message %></p></li>
+          <% }) %> <% } %>
+        </ul>
+      </div>
+    </main>
+  </body>
 </html>
