@@ -2,9 +2,11 @@
     <% if (signedIn) { %>
     <ul>
         <li><a href="/logout">Logout</a></li>
-        <li><a href="/join">Join Members Club</a></li>
-        <% if (memberStatus) { %>
+        <% if (memberStatus === true) { %>
         <li><a href="/comment">Add Comment</a></li>
+        <li><a href="/manageMember">Leave Members Club</a></li>
+        <% } else { %>
+        <li><a href="/manageMember">Join Members Club</a></li>
         <% } %>
     </ul>
     <% } else { %>
