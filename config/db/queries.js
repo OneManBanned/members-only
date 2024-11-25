@@ -24,6 +24,17 @@ const db = {
             [membership_status, user_id],
         );
     },
+
+    createMessage: async function(title, message, author, timestamp) {
+        await pool.query(
+            "INSERT INTO messages (title, message, author, timestamp) VALUES ($1, $2, $3, $4)",
+            [title, message, author, timestamp],
+        );
+    },
+
+    findMessages: async function() {
+        return await pool.query('SELECT * FROM messages')
+    }
 };
 
 export default db;
