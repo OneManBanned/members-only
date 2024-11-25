@@ -25,7 +25,6 @@
     password.value === confirmPassword.value;
 
   fields.forEach(([field, error]) => {
-    console.log(field, error);
     passwordMatch(pw, confirmPw);
     field.addEventListener("input", () => {
       error.textContent = "";
