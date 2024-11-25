@@ -16,8 +16,6 @@ const verifyCallback = async (username, password, done) => {
 
     if (!user) return done((null, false));
 
-    
-
     const isValid = validatePassword(password, user.hash, user.salt);
 
     if (isValid) {
