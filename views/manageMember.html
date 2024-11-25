@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <form action="/manageMember/<%= userId %>" method="POST">
+            <button name="membership_status" type="submit" value="<%= value %>" >
+                <% if (memberStatus) { %>
+                Leave Members Club
+                <% } else { %>
+                Join Members Club
+                <% } %>
+            </button>
+   </form> 
+    </body>
+</html>

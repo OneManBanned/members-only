@@ -5,7 +5,7 @@ import { dirname } from "path";
 import { session } from "./config/session/session.js";
 import signUpRoute from "./routes/signUp/signUpRoute.js";
 import loginRoute from "./routes/login/loginRoute.js";
-import joinRoute from "./routes/join/joinRoute.js";
+import manageMemberRoute from "./routes/manageMember/manageMemberRoute.js";
 import commentRoute from "./routes/comment/commentRoute.js";
 import passport from "passport";
 
@@ -40,7 +40,7 @@ app.get("/logout", (req, res, next) => {
 app.use("/comment", commentRoute);
 app.use("/signUp", signUpRoute);
 app.use("/login", loginRoute);
-app.use("/join", joinRoute);
+app.use("/manageMember", manageMemberRoute);
 
 app.get("/", (req, res) => {
   const signedIn = req.isAuthenticated();
