@@ -1,6 +1,16 @@
 <header>
+    <% if (signedIn) { %>
+    <ul>
+        <li><a href="/logout">Logout</a></li>
+        <li><a href="/join">Join Members Club</a></li>
+        <% if (memberStatus) { %>
+        <li><a href="/comment">Add Comment</a></li>
+        <% } %>
+    </ul>
+    <% } else { %>
     <ul>
         <li><a href="/signUp">SignUp</a></li>
         <li><a href="/login">Login</a></li>
     </ul>
+    <% }  %>
 </header>
