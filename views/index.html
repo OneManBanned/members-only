@@ -11,12 +11,27 @@
     <main>
       <h1>message board</h1>
       <div>
+          <% if (messages) {  %> 
         <ul>
-          <% if (messages) { %> <% console.log(messages) %> <%
-          messages.forEach(function (message) { %>
-          <li><h2><%= message.title %></h2><p><%= message.message %></p></li>
-          <% }) %> <% } %>
+          <% messages.forEach(function (message) { %>
+          <li>
+            <h2><%= message.title %></h2>
+            <p><%= message.message %></p>
+            <% if ( signedIn ) { %>
+            <% if ( status.membership_status ) { %>
+            <span><%= message.firstname %> <%= message.lastname %></span>
+            <span><%= String(message.timestamp) %></span>
+            <% } %>
+            <% if ( status.isadmin ) { %> 
+            <form action="/delete/<%= message.message_id %>" method="POST" >
+                <button type="submit">DELETE</button>
+            </form>
+            <% } %>
+            <% } %>
+          </li>
+          <% }) %>
         </ul>
+        <% } %>
       </div>
     </main>
   </body>
