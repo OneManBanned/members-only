@@ -1,18 +1,18 @@
 <header>
-    <% if (signedIn) { %>
+    <% if (!signedIn) { %>
+    <ul>
+        <li><a href="/signUp">SignUp</a></li>
+        <li><a href="/login">Login</a></li>
+    </ul>
+    <% } else { %>
     <ul>
         <li><a href="/logout">Logout</a></li>
-        <% if (memberStatus === true) { %>
         <li><a href="/message">Add Comment</a></li>
+        <% if ( status.membership_status === true ) { %>
         <li><a href="/manageMember">Leave Members Club</a></li>
         <% } else { %>
         <li><a href="/manageMember">Join Members Club</a></li>
         <% } %>
-    </ul>
-    <% } else { %>
-    <ul>
-        <li><a href="/signUp">SignUp</a></li>
-        <li><a href="/login">Login</a></li>
     </ul>
     <% }  %>
 </header>
