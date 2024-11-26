@@ -1,6 +1,7 @@
 import db from "../config/db/queries.js";
 import asyncHandler from "express-async-handler";
 import { body, param, validationResult } from "express-validator";
+import { CustomBadRequestError } from "../utils/errors.js";
 
 const validateMembershipStatus = [
     body("membership_status")
@@ -21,11 +22,11 @@ const manageMemberController = {
     },
     post: [
         validateMembershipStatus,
-        asyncHandler(async (req, res, next) => {
+        asyncHandler(async (req, res) => {
             const valid = validationResult(req);
 
             if (!valid.isEmpty()) {
-                console.log("HIT: ", valid);
+                throw new CustomBadRequestError()
             }
 
             const { membership_status } = req.body
