@@ -1,0 +1,30 @@
+<script>
+  const form = document.querySelector("form");
+  const title = document.querySelector("#title");
+  const message = document.querySelector("#message");
+  const titleError = document.querySelector("#title + span.error");
+  const messageError = document.querySelector("#message + span.error");
+
+  const fields = [
+    [title, titleError],
+    [message, messageError],
+  ];
+
+  fields.forEach(([field, error]) => {
+    field.addEventListener("input", () => {
+      error.textContent = "";
+      if (field.validity.valueMissing) {
+        error.textContent = "required";
+      }
+    });
+  });
+
+  form.addEventListener("submit", (e) => {
+    fields.forEach(([field, error]) => {
+      if (!field.validity.valid) {
+        showErrors([field, error]);
+        e.preventDefault();
+      }
+    });
+  });
+</script>
