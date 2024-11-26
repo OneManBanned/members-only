@@ -82,12 +82,13 @@
         <li>
           <label for="isAdmin">
           <span>isAdmin: <span>
-          <input type="checkbox" name="isAdmin" id="isAdmin" >
+          <input type="checkbox"  name="isAdmin" id="isAdmin" >
           </label>
         </li>
       </ul>
       <button type="submit">Submit</button>
     </form>
   </body>
-  <%- include('clientValidation.html') %> 
+  <%- include('showErrors.html') %> 
+  <%- include('clientSignUpValidation.html') %> 
 </html>

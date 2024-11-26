@@ -1,0 +1,13 @@
+<script>
+  function showErrors([f, e]) {
+    if (f.validity.valueMissing) {
+      e.textContent = "required";
+    } else if (f.validity.typeMismatch) {
+      e.textContent = "must be a valid email address";
+    } else if (f.validity.tooShort) {
+      e.textContent = "must be atleast 8 charcaters long";
+    } else if (f.validity.tooLong) {
+      e.textContent = "must be fewer than 255 charcaters";
+    }
+  }
+</script>
