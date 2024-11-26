@@ -5,10 +5,10 @@ const indexController = {
         const { rows } = await db.findMessages()
 
         const signedIn = req.isAuthenticated();
-        const memberStatus = signedIn ? req.user.membership_status : false;
 
-        res.render("index.html", { signedIn: signedIn, memberStatus: memberStatus, messages: rows });
+        res.render("index.html", { signedIn: signedIn, status: req.user, messages: rows });
     },
+
 };
 
 export default indexController;

@@ -8,6 +8,8 @@ import loginRoute from "./routes/login/loginRoute.js";
 import manageMemberRoute from "./routes/manageMember/manageMemberRoute.js";
 import messageRoute from "./routes/message/messageRoute.js";
 import indexRoute from "./routes/indexRoute.js";
+import logoutRoute from "./routes/logoutRoute.js";
+import deleteRoute from "./routes/deleteRoute.js";
 import passport from "passport";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -27,17 +29,8 @@ import "./config/passport/passport.js";
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/logout", (req, res, next) => {
-  req.logout(function (err) {
-    if (err) {
-      next(err);
-    }
-  });
-  const signedIn = req.isAuthenticated();
-  const memberStatus = signedIn ? req.user.membership_status : false;
-  res.render("index.html", { signedIn: signedIn, memberStatus: memberStatus });
-});
-
+app.use("/delete", deleteRoute)
+app.use("/logout", logoutRoute)
 app.use("/message", messageRoute);
 app.use("/signUp", signUpRoute);
 app.use("/login", loginRoute);
@@ -47,7 +40,7 @@ app.use("/", indexRoute);
 app.use((req, res) => res.send("404 not found"));
 app.use((err, req, res, next) => {
   console.error(err);
-  res.status(500).send(err.message);
+  res.status(err.statusCode || 500).send(err.statusCode);
 });
 
 app.listen(PORT, () => console.log(`listening on http://localhost:${PORT}`));
