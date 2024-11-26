@@ -79,6 +79,12 @@
           <span class="error" aria-live="polite" ><% if (errors.confirmPassword) {%><%= errors.confirmPassword %><% } %><span>
           </label>
         </li>
+        <li>
+          <label for="isAdmin">
+          <span>isAdmin: <span>
+          <input type="checkbox" name="isAdmin" id="isAdmin" >
+          </label>
+        </li>
       </ul>
       <button type="submit">Submit</button>
     </form>
