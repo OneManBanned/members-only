@@ -1,0 +1,30 @@
+<script>
+  const form = document.querySelector("form");
+  const email = document.querySelector("#email");
+  const password = document.querySelector("#password");
+  const emailError = document.querySelector("#email + span.error");
+  const passwordError = document.querySelector("#password + span.error");
+
+  const fields = [
+    [email, emailError],
+    [password, passwordError],
+  ];
+
+  fields.forEach(([field, error]) => {
+    field.addEventListener("input", () => {
+      error.textContent = "";
+      if (field.validity.valueMissing) {
+        error.textContent = "required";
+      }
+    });
+  });
+
+  form.addEventListener("submit", (e) => {
+    fields.forEach(([field, error]) => {
+      if (!field.validity.valid) {
+        showErrors([field, error]);
+        e.preventDefault();
+      }
+    });
+  });
+</script>

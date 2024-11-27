@@ -6,6 +6,6 @@ const loginRoute = Router();
 
 loginRoute.get("/", loginController.get)
 loginRoute.get("/failure", (req, res) => res.send("login failed"))
-loginRoute.post("/", passport.authenticate('local', { failureRedirect: '/login/failure', successRedirect: '/'}))
+loginRoute.post("/", loginController.post, passport.authenticate('local', { failureRedirect: '/login/failure', successRedirect: '/'}))
 
 export default loginRoute;

@@ -19,7 +19,6 @@
             id="email"
             required
             value="<% if (values.email) { %><%= values.email %><% } %>"
-            maxlength="255"
           />
           <span class="error" aria-live="polite" ><% if (errors.email) {%><%= errors.email %><% } %><span>
           </label>
@@ -33,8 +32,6 @@
             id="password"
             required
             value="<% if (values.password) { %><%= values.password %><% } %>"
-            maxlength="255"
-            minlength="8"
           />
           <span class="error" aria-live="polite" ><% if (errors.password) {%><%= errors.password %><% } %><span>
           </label>
@@ -43,4 +40,7 @@
       <button type="submit">Submit</button>
     </form>
   </body>
-  <!--- <%- include('clientValidation.html') %> 
+  <%- include("showErrors.html") %>
+  <%- include("clientLoginValidation.html") %>
+</html>
+
